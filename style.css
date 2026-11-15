@@ -1,0 +1,181 @@
+/* ========================================================
+   Design Tokens & CSS Variables (Matching abhinavsrivatsa.com)
+   ======================================================== */
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --muted: #737373;
+  --accent: #404040;
+  --border: #e5e5e5;
+  --hover-bg: #f5f5f5;
+  --hover-text: #171717;
+  --link-fill: #2c5eff;
+  --link-fill-text: #ffffff;
+  --link-accent: #2c5eff;
+  --command-surface: #f5f5f5;
+  --scrollbar-thumb: #c1c1c1;
+
+  /* App Icon SVG Tokens */
+  --pi-outer: #f4f4f4;
+  --pi-inner: #ffffff;
+  --pi-ring: rgba(0, 0, 0, 0.08);
+  --pi-inner-stroke: #e2e1e1;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --muted: #a3a3a3;
+  --accent: #d4d4d4;
+  --border: #262626;
+  --hover-bg: #1c1c1c;
+  --hover-text: #fafafa;
+  --link-fill: #2c5eff;
+  --link-fill-text: #ffffff;
+  --link-accent: #3d9eff;
+  --command-surface: #1c1c1c;
+  --scrollbar-thumb: #5a5a5a;
+
+  /* App Icon SVG Tokens (Dark) */
+  --pi-outer: #1f1f1f;
+  --pi-inner: #141414;
+  --pi-ring: rgba(255, 255, 255, 0.1);
+  --pi-inner-stroke: #2e2e2e;
+}
+
+/* Base resets & typography */
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--foreground);
+  background-color: var(--background);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
+}
+
+/* ========================================================
+   Quiet Link (Subtle dotted underline that activates on hover)
+   ======================================================== */
+.quiet-link {
+  color: var(--muted);
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--muted) 55%, transparent);
+  text-underline-offset: 3px;
+  transition: color 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), text-decoration-color 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.quiet-link:focus-visible,
+.quiet-link:hover,
+.quiet-link[data-popup-open] {
+  color: var(--link-accent);
+  text-decoration-color: var(--link-accent);
+}
+
+/* ========================================================
+   Desktop Sidebar Links (Slide-in blue background highlight)
+   ======================================================== */
+.sidebar-nav-link {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.sidebar-nav-link .nav-slide-pill {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-nav-link.active-nav {
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+/* ========================================================
+   Project Cards & App Icon Styling
+   ======================================================== */
+.project-card {
+  border-radius: 24px;
+  transition: background-color 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project-card:hover {
+  background-color: var(--hover-bg);
+}
+
+.project-icon-box .svg-outer {
+  fill: var(--pi-outer);
+  stroke: var(--pi-ring);
+  stroke-width: 1px;
+}
+
+.project-icon-box .svg-inner {
+  fill: var(--pi-inner);
+  stroke: var(--pi-inner-stroke);
+  stroke-width: 1px;
+}
+
+/* ========================================================
+   Annotation Focus Blur Effect (Work / Education History)
+   ======================================================== */
+.annotation-host:hover .annotation-item:not(:hover) {
+  filter: blur(2.5px);
+  opacity: 0.38;
+}
+
+.annotation-item {
+  transition: filter 0.32s cubic-bezier(0.25, 0.8, 0.3, 1), opacity 0.32s cubic-bezier(0.25, 0.8, 0.3, 1);
+}
+
+/* ========================================================
+   Page View Transitions (Home, Projects, About, Connect)
+   ======================================================== */
+.page-view {
+  animation: viewFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes viewFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================================
+   Modals & Drawers
+   ======================================================== */
+#searchModal.active,
+#colophonModal.active,
+#usageModal.active {
+  display: grid;
+}
+
+/* Animated Hamburger lines on mobile */
+.menu-open #mobileNavLine1 {
+  transform: translateY(1.9px) rotate(45deg);
+}
+
+.menu-open #mobileNavLine2 {
+  transform: translateY(-1.9px) rotate(-45deg);
+}
